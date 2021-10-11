@@ -1,0 +1,75 @@
+/* Full-Body part */
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* Header part */
+
+.full-header {
+    display: flex;
+    color: white;
+    text-align: center;
+    background-image: url(../images/airline-05.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+}
+
+.header-nav-bg {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: rgba(0, 0, 0, 0.40);
+}
+
+.header-text {
+    padding: 80px;
+}
+
+/* Search-flight Container */
+
+.search-flight-container {
+    padding: 30px;
+    /* background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)) , url(images/airline-02.jpg); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 15px;
+    color: whitesmoke;
+    box-shadow: rgba(0, 0, 0, 0.1) -4px 9px 25px -6px;
+    background-color: darkslateblue;
+}
+
+/* Various-flight all card */
+
+.card {
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+}
+
+.card-title {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.card-img {
+    height: 150px;
+}
+
+/* Admin-login part */
+
+.admin-header {
+    color: white;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/airline-03.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+}
+
+.admin-login-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 120px;
+}
