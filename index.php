@@ -27,15 +27,15 @@
     <div class="d-flex flex-column">
       <header class="mb-auto header-nav-bg">
         <div>
-          <a href="" class="d-flex float-md-start text-decoration-none text-white justify-content-center">
+          <a href="index.php" class="d-flex float-md-start text-decoration-none text-white justify-content-center">
             <img src="images/logo_1.svg" width="40" height="32">
             <h3><strong>ATRS</strong></h3>
           </a>
           <nav class="nav nav-masthead justify-content-center float-md-end">
-            <a class="nav-link text-white" aria-current="page" href="#">Home</a>
-            <a class="nav-link text-white" href="#">About</a>
-            <a class="nav-link text-white" href="#">Contact us</a>
-            <a class="nav-link text-white" href="admin/admin_login.html">Admin login</a>
+            <a class="nav-link custom-nav-link" aria-current="page" href="index.php">Home</a>
+            <a class="nav-link custom-nav-link" href="about.php">About</a>
+            <a class="nav-link custom-nav-link" href="contact.php">Contact us</a>
+            <a class="nav-link custom-nav-link" href="admin/admin_login.php">Admin login</a>
           </nav>
         </div>
       </header>
@@ -52,7 +52,7 @@
 
 
   <!--=======Search-flights Part starts here=======-->
-  <section class="py-5" id="register">
+  <section class="py-5">
     <div class="container search-flight-container">
       <div class="row">
         <div class="col-md-4 py-5 text-white">
@@ -160,109 +160,178 @@
 
 
 
-  <!--=======Various-flight(Domestic & International) Part starts here=======-->
+  <!--=======Various-flight(Domestic & International) and Popular Airlines Part starts here=======-->
   <section class="pt-2 pb-5" style="background-color: whitesmoke;">
     <div class="container">
-      <h4 class="fw-bold text-center py-4">OUR DOMESTIC FLIGHT</h4>
+      <h4 class="fw-bold text-center py-4">Our <span style="color: darkslateblue;">Domestic Flight</span></h4>
       <div class="row row-cols-1 row-cols-md-4 g-4">
         <div class="col">
           <div class="card">
             <img src="images/dhaka.jpg" class="card-img" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Dhaka</h5>
+            <div class="card-body py-2">
+              <h6 class="card-title">Dhaka</h6>
             </div>
           </div>
         </div>
         <div class="col">
           <div class="card">
             <img src="images/chittagong.jpg" class="card-img" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Chittagong</h5>
+            <div class="card-body py-2">
+              <h6 class="card-title">Chittagong</h6>
             </div>
           </div>
         </div>
         <div class="col">
           <div class="card">
             <img src="images/cox's_bazar.jpg" class="card-img" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Cox's Bazar</h5>
+            <div class="card-body py-2">
+              <h6 class="card-title">Cox's Bazar</h6>
             </div>
           </div>
         </div>
         <div class="col">
           <div class="card">
             <img src="images/sylhet.jpg" class="card-img" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Sylhet</h5>
+            <div class="card-body py-2">
+              <h6 class="card-title">Sylhet</h6>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="container mt-5">
-      <h4 class="fw-bold text-center py-4">OUR INTERNATIONAL FLIGHT</h4>
+      <h4 class="fw-bold text-center py-4">Our <span style="color: darkslateblue;">International Flight</span></h4>
       <div class="row row-cols-1 row-cols-md-4 g-4">
         <div class="col">
           <div class="card">
             <img src="images/saudi_arabia.png" class="card-img" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Saudi Arabia</h5>
+            <div class="card-body py-2">
+              <h6 class="card-title">Saudi Arabia</h6>
             </div>
           </div>
         </div>
         <div class="col">
           <div class="card">
             <img src="images/uae.jpg" class="card-img" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">United Arab Emirates</h5>
+            <div class="card-body py-2">
+              <h6 class="card-title">United Arab Emirates</h6>
             </div>
           </div>
         </div>
         <div class="col">
           <div class="card">
             <img src="images/qatar.jpg" class="card-img" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Qatar</h5>
+            <div class="card-body py-2">
+              <h6 class="card-title">Qatar</h6>
             </div>
           </div>
         </div>
         <div class="col">
           <div class="card">
             <img src="images/england.jpg" class="card-img" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">England</h5>
+            <div class="card-body py-2">
+              <h6 class="card-title">England</h6>
             </div>
           </div>
         </div>
         <div class="col">
           <div class="card">
             <img src="images/india.jpg" class="card-img" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">India</h5>
+            <div class="card-body py-2">
+              <h6 class="card-title">India</h6>
             </div>
           </div>
         </div>
         <div class="col">
           <div class="card">
             <img src="images/nepal.jpg" class="card-img" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Nepal</h5>
+            <div class="card-body py-2">
+              <h6 class="card-title">Nepal</h6>
             </div>
           </div>
         </div>
         <div class="col">
           <div class="card">
             <img src="images/singapore.jpg" class="card-img" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Singapor</h5>
+            <div class="card-body py-2">
+              <h6 class="card-title">Singapor</h6>
             </div>
           </div>
         </div>
         <div class="col">
           <div class="card">
             <img src="images/china.jpg" class="card-img" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">China</h5>
+            <div class="card-body py-2">
+              <h6 class="card-title">China</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container mt-5">
+      <h4 class="fw-bold text-center py-4">Our <span style="color: darkslateblue;">Popular Airlines</span></h4>
+      <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div class="col">
+          <div class="card">
+            <img src="images/biman_bangladesh.jpg" class="card-img" alt="...">
+            <div class="card-body py-2">
+              <h6 class="card-title">Biman Bangladesh Airlines</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="images/us_bangla.jpg" class="card-img" alt="...">
+            <div class="card-body py-2">
+              <h6 class="card-title">US-Bangla Airlines</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="images/novoair.jpg" class="card-img" alt="...">
+            <div class="card-body py-2">
+              <h6 class="card-title">Novoair</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="images/regent_airways.jpg" class="card-img" alt="...">
+            <div class="card-body py-2">
+              <h6 class="card-title">Regent Airways</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="images/qatar_airways.jpg" class="card-img" alt="...">
+            <div class="card-body py-2">
+              <h6 class="card-title">Qatar Airways</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="images/emirates.png" class="card-img" alt="...">
+            <div class="card-body py-2">
+              <h6 class="card-title">Emirates</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="images/air_arabia.jpg" class="card-img" alt="...">
+            <div class="card-body py-2">
+              <h6 class="card-title">Air Arabia</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="images/singapore_airlines.jpg" class="card-img" alt="...">
+            <div class="card-body py-2">
+              <h6 class="card-title">Singapore Airlines</h6>
             </div>
           </div>
         </div>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Airline Ticket Reservation System</title>
+    <title>Admin Login</title>
     <!-- add custom font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,43 +27,42 @@
         <div class="d-flex flex-column">
             <header class="mb-auto header-nav-bg">
                 <div>
-                    <a href="" class="d-flex float-md-start text-decoration-none text-white justify-content-center">
+                    <a href="../index.php" class="d-flex float-md-start text-decoration-none text-white justify-content-center">
                         <img src="../images/logo_1.svg" width="40" height="32">
                         <h3><strong>ATRS</strong></h3>
                     </a>
                     <nav class="nav nav-masthead justify-content-center float-md-end">
-                        <a class="nav-link text-white" aria-current="page" href="../index.html">Home</a>
-                        <a class="nav-link text-white" href="#">About</a>
-                        <a class="nav-link text-white" href="#">Contact us</a>
-                        <a class="nav-link text-white" href="#">Admin login</a>
+                        <a class="nav-link custom-nav-link" aria-current="page" href="../index.php">Home</a>
+                        <a class="nav-link custom-nav-link" href="../about.php">About</a>
+                        <a class="nav-link custom-nav-link" href="../contact.php">Contact us</a>
+                        <a class="nav-link custom-nav-link" href="admin_login.php">Admin login</a>
                     </nav>
                 </div>
             </header>
             <!-- Admin-login Section starts here -->
             <main>
                 <div class="admin-login-container">
-                    <div class="col-md-4 p-4 border">
+                    <div class="col-md-4 p-5 border rounded">
                         <h5 class="fw-bold text-center">Admin login!</h5>
                         <hr>
                         <form action="" method="">
                             <div class="row">
-                                <div class="py-2">
+                                <div class="pt-4">
                                     <div class="form-group">
-                                        <label for="floatingInput">Email address</label>
-                                        <input type="email" class="form-control" id="floatingInput"
-                                            placeholder="name@example.com">
+                                        <!-- <label for="floatingInput">Email</label> -->
+                                        <input type="email" class="form-control" id="floatingInput" placeholder="Email">
                                     </div>
                                 </div>
-                                <div class="py-2">
+                                <div class="pt-3">
                                     <div class="form-group">
-                                        <label for="floatingPassword">Password</label>
+                                        <!-- <label for="floatingPassword">Password</label> -->
                                         <input type="password" class="form-control" id="floatingPassword"
                                             placeholder="Password">
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-row py-3">
-                                <button type="submit" class="btn btn-outline-light w-100 shadow">Log in</button>
+                            <div class="form-row py-4">
+                                <a href="admin_dashboard.php" type="submit" class="btn btn-outline-light w-100 shadow btn-sm">Log in</a>
                             </div>
                         </form>
                     </div>
