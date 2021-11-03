@@ -12,8 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
     <!-- add bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <!-- add css file -->
     <link rel="stylesheet" href="../css/style.css">
     <!-- add favicon -->
@@ -45,26 +44,52 @@
                     <div class="col-md-4 p-5 border rounded">
                         <h5 class="fw-bold text-center">Admin login!</h5>
                         <hr>
-                        <form action="" method="">
+                        <form action="" method="POST">
                             <div class="row">
                                 <div class="pt-4">
                                     <div class="form-group">
                                         <!-- <label for="floatingInput">Email</label> -->
-                                        <input type="email" class="form-control" id="floatingInput" placeholder="Email">
+                                        <input type="email" name="email" class="form-control" id="floatingInput" placeholder="Email" required>
                                     </div>
                                 </div>
                                 <div class="pt-3">
                                     <div class="form-group">
                                         <!-- <label for="floatingPassword">Password</label> -->
-                                        <input type="password" class="form-control" id="floatingPassword"
-                                            placeholder="Password">
+                                        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row py-4">
-                                <a href="admin_dashboard.php" type="submit" class="btn btn-outline-light w-100 shadow btn-sm">Log in</a>
+                                <button class="btn btn-outline-light w-100 shadow btn-sm" type="submit" name="login">Log in</button>
                             </div>
                         </form>
+
+                        <!-- Admin Login form PHP Coding starts here... -->
+                        <?php
+                        session_start();
+                        include '../db_connection.php';
+
+                        if (isset($_POST['login'])) {
+                            $email = $_POST['email']; //input email stored in variable
+                            $password = $_POST['password']; ////input password stored in variable
+                            $query = "SELECT * FROM admin_tbl WHERE Email = '$email'";
+                            $query_run = mysqli_query($connection, $query);
+                            while ($row = mysqli_fetch_assoc($query_run)) {
+                                if ($row['Email'] == $email && $row['Password'] == $password) {
+                                    header("Location:admin_dashboard.php");
+                                } else {
+                        ?>
+                                    <div class="alert alert-danger alert-dismissible fade show small" role="alert">
+                                        Email & Password didn't match!
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                        <?php
+                                }
+                            }
+                        }
+                        ?>
+                        <!-- Admin Login form PHP Coding ends here... -->
+
                     </div>
                 </div>
             </main>
@@ -77,15 +102,9 @@
 
 
     <!-- ======= Bootstrap, JavaScript CDN add ======= -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
-        integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
-        integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
 </body>
 
 </html>

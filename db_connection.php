@@ -13,6 +13,6 @@ $connection = mysqli_connect($server, $username, $password, $database);
 if(!$connection) {
     die("Connection failed! Due to" . mysqli_connect_error());
 }
-echo "Connected successfully";
+// echo "Connected successfully";
 
 ?>

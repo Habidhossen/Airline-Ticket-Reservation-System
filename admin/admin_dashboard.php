@@ -56,7 +56,7 @@
                 <li><a class="dropdown-item small" href="edit_profile.php">Edit Profile</a></li>
                 <li><a class="dropdown-item small" href="change_password.php">Change Password</a></li>
             </ul>
-            <a href="admin_login.php" class="btn btn-sm" style="background-color: lavenderblush;">Log out</a>
+            <a href="../logout.php" class="btn btn-sm" style="background-color: lavenderblush;">Log out</a>
         </div>
     </header>
     <!-- ======= Header ends here======= -->
