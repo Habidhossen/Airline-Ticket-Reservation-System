@@ -1,3 +1,45 @@
+<?php
+
+session_start();
+include '../db_connection.php';
+
+if (isset($_POST['login'])) {
+
+    $email = $_POST['email']; //input-email stored in variable
+    $password = $_POST['password']; ////input-password stored in variable
+
+    $sql = "SELECT * FROM `admin_tbl` WHERE Email = '$email'";
+    $result = mysqli_query($connection, $sql);
+
+    $num = mysqli_num_rows($result);
+    if ($num == 1) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            if ($_POST['password'] === $row['Password']) {
+
+                $_SESSION['adminId'] = $row['Id'];
+                $_SESSION['adminName'] = $row['Name'];
+                $_SESSION['adminEmail'] = $row['Email'];
+
+                header("location: admin_dashboard.php");
+                exit;
+            } else {
+                // echo 'Wrong password';
+                $_SESSION['wrongPasswordAlert'] = 'Wrong Password!';
+                header("location: admin_login.php");
+                exit;
+            }
+        }
+    } else {
+        // echo 'Invalid email';
+        $_SESSION['invalidEmailAlert'] = 'Invalid Email!';
+        header("location: admin_login.php");
+        exit;
+    }
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,9 +86,30 @@
                     <div class="col-md-4 p-5 border rounded">
                         <h5 class="fw-bold text-center">Admin login!</h5>
                         <hr>
+                        <!-- PHP Coding for showing alert -->
+                        <?php
+                        if (isset($_SESSION['wrongPasswordAlert'])) {
+                        ?>
+                            <div class="alert alert-danger alert-dismissible fade show small" role="alert">
+                                <?php echo $_SESSION['wrongPasswordAlert'];
+                                unset($_SESSION['wrongPasswordAlert']); ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php
+                        }
+                        if (isset($_SESSION['invalidEmailAlert'])) {
+                        ?>
+                            <div class="alert alert-warning alert-dismissible fade show small" role="alert">
+                                <?php echo $_SESSION['invalidEmailAlert'];
+                                unset($_SESSION['invalidEmailAlert']); ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php
+                        }
+                        ?>
                         <form action="" method="POST">
                             <div class="row">
-                                <div class="pt-4">
+                                <div class="pt-2">
                                     <div class="form-group">
                                         <!-- <label for="floatingInput">Email</label> -->
                                         <input type="email" name="email" class="form-control" id="floatingInput" placeholder="Email" required>
@@ -63,33 +126,6 @@
                                 <button class="btn btn-outline-light w-100 shadow btn-sm" type="submit" name="login">Log in</button>
                             </div>
                         </form>
-
-                        <!-- Admin Login form PHP Coding starts here... -->
-                        <?php
-                        session_start();
-                        include '../db_connection.php';
-
-                        if (isset($_POST['login'])) {
-                            $email = $_POST['email']; //input email stored in variable
-                            $password = $_POST['password']; ////input password stored in variable
-                            $query = "SELECT * FROM admin_tbl WHERE Email = '$email'";
-                            $query_run = mysqli_query($connection, $query);
-                            while ($row = mysqli_fetch_assoc($query_run)) {
-                                if ($row['Email'] == $email && $row['Password'] == $password) {
-                                    header("Location:admin_dashboard.php");
-                                } else {
-                        ?>
-                                    <div class="alert alert-danger alert-dismissible fade show small" role="alert">
-                                        Email & Password didn't match!
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                        <?php
-                                }
-                            }
-                        }
-                        ?>
-                        <!-- Admin Login form PHP Coding ends here... -->
-
                     </div>
                 </div>
             </main>

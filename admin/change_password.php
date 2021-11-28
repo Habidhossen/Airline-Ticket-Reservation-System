@@ -1,3 +1,48 @@
+<?php
+
+include '../db_connection.php';
+session_start();
+
+// update profile
+if (isset($_POST['change_password'])) {
+
+    $password = '';
+    $current_pass = $_POST['current_password'];
+    $new_pass = $_POST['new_password'];
+    $confirm_new_password = $_POST['confirm_new_password'];
+
+    $sql = "SELECT * FROM `admin_tbl` WHERE Email = '$_SESSION[adminEmail]'";
+    $result = mysqli_query($connection, $sql);
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        $db_password = $row['Password'];
+    }
+
+    if ($db_password == $current_pass && $new_pass == $confirm_new_password) {
+        $sql = "UPDATE `admin_tbl` SET Password ='$new_pass' WHERE Email = '$_SESSION[adminEmail]'";
+        $result = mysqli_query($connection, $sql);
+        if ($result) {
+            $_SESSION['passChangeAlert'] = 'Password Changed Succesfully!';
+            header("location: change_password.php");
+            exit;
+        } else {
+            echo 'Something went wrong!';
+        }
+    } else {
+        $_SESSION['passFailAlert'] = "Password didn't match! Please enter a correct password.";
+        header("location: change_password.php");
+        exit;
+    }
+}
+
+// when User press backbutton after logout then he/she cannot access again this page without Login and this condition also use for security purpose.
+if (!isset($_SESSION['adminEmail'])) {
+    header("location: admin/admin_login.php");
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,7 +98,7 @@
                 <li><a class="dropdown-item small" href="edit_profile.php">Edit Profile</a></li>
                 <li><a class="dropdown-item small" href="change_password.php">Change Password</a></li>
             </ul>
-            <a href="admin_login.php" class="btn btn-sm" style="background-color: lavenderblush;">Log out</a>
+            <a href="logout.php" class="btn btn-sm" style="background-color: lavenderblush;">Log out</a>
         </div>
     </header>
     <!-- ======= Header ends here======= -->
@@ -66,22 +111,50 @@
 
         <h5 class="mb-3 fw-bold">Change Password</h5>
         <hr class="my-3">
-        <form>
+
+        <!-- PHP Coding for showing alert -->
+        <?php
+        if (isset($_SESSION['passChangeAlert'])) {
+        ?>
+            <div class="alert alert-success alert-dismissible fade show small" role="alert">
+                <?php echo $_SESSION['passChangeAlert'];
+                unset($_SESSION['passChangeAlert']); ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php
+        }
+        if (isset($_SESSION['passFailAlert'])) {
+        ?>
+            <div class="alert alert-warning alert-dismissible fade show small" role="alert">
+                <?php echo $_SESSION['passFailAlert'];
+                unset($_SESSION['passFailAlert']); ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php
+        }
+        ?>
+
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
             <div class="form-group row align-items-center">
                 <label class="col-4">Current Password:</label>
                 <div class="col-8">
-                    <input name="current_password" type="password" class="form-control alert-success" value="">
+                    <input name="current_password" type="password" class="form-control alert-success" required value="">
                 </div>
             </div>
-
             <div class="form-group row align-items-center mt-2">
                 <label class="col-4">New Password:</label>
                 <div class="col-8">
-                    <input name="new_password" type="password" class="form-control alert-success" value="">
+                    <input name="new_password" type="password" class="form-control alert-success" required value="">
+                </div>
+            </div>
+            <div class="form-group row align-items-center mt-2">
+                <label class="col-4">Re-type new Password:</label>
+                <div class="col-8">
+                    <input name="confirm_new_password" type="password" class="form-control alert-success" required value="">
                 </div>
             </div>
             <div class="mt-3">
-                <button type="submit" class="w-100 btn btn-sm text-white" style="background-color: cadetblue;">Change Password</button>
+                <button name="change_password" type="submit" class="w-100 btn btn-sm text-white" style="background-color: cadetblue;">Change Password</button>
             </div>
         </form>
 

@@ -1,3 +1,42 @@
+<?php
+
+include '../db_connection.php';
+session_start();
+
+// declare variable
+$adminname = '';
+
+$sql = "SELECT * FROM `admin_tbl` WHERE Email = '$_SESSION[adminEmail]'";
+$result = mysqli_query($connection, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+    $adminname = $row['Name'];
+}
+
+// update profile
+if (isset($_POST['update_profile'])) {
+
+    $name = $_POST['name'];
+
+    $sql = "UPDATE `admin_tbl` SET Name ='$name'";
+    $result = mysqli_query($connection, $sql);
+
+    if ($result) {
+        $_SESSION['profileUpdateAlert'] = 'Updated Successfully!';
+        header("location: edit_profile.php");
+        exit;
+    } else {
+        echo 'Something went wrong!';
+    }
+}
+
+
+// when User press backbutton after logout then he/she cannot access again this page without Login and this condition also use for security purpose.
+if (!isset($_SESSION['adminEmail'])) {
+    header("location: admin/admin_login.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,7 +92,7 @@
                 <li><a class="dropdown-item small" href="edit_profile.php">Edit Profile</a></li>
                 <li><a class="dropdown-item small" href="change_password.php">Change Password</a></li>
             </ul>
-            <a href="admin_login.php" class="btn btn-sm" style="background-color: lavenderblush;">Log out</a>
+            <a href="logout.php" class="btn btn-sm" style="background-color: lavenderblush;">Log out</a>
         </div>
     </header>
     <!-- ======= Header ends here======= -->
@@ -66,22 +105,29 @@
 
         <h5 class="mb-3 fw-bold">Edit Profile</h5>
         <hr class="my-3">
-        <form>
+
+        <!-- PHP Coding for showing alert -->
+        <?php
+        if (isset($_SESSION['profileUpdateAlert'])) {
+        ?>
+            <div class="alert alert-success alert-dismissible fade show small" role="alert">
+                <?php echo $_SESSION['profileUpdateAlert'];
+                unset($_SESSION['profileUpdateAlert']); ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php
+        }
+        ?>
+
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
             <div class="form-group row align-items-center">
                 <label class="col-4">Name:</label>
                 <div class="col-8">
-                    <input name="name" class="form-control alert-success" value="Admin">
-                </div>
-            </div>
-
-            <div class="form-group row align-items-center mt-2">
-                <label class="col-4">Email:</label>
-                <div class="col-8">
-                    <input name="name" class="form-control alert-success" value="admin@gmail.com">
+                    <input name="name" class="form-control alert-success" value="<?php echo $adminname; ?>">
                 </div>
             </div>
             <div class="mt-3">
-                <button type="submit" class="w-100 btn btn-sm text-white" style="background-color: cadetblue;">Update Profile</button>
+                <button name="update_profile" type="submit" class="w-100 btn btn-sm text-white" style="background-color: cadetblue;">Update Profile</button>
             </div>
         </form>
 
